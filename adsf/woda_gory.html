@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zdolni z Pomorza</title>
+<style type="text/css">
+	body{
+		text-align: center;
+	}
+	#canvas {
+		margin: 20px auto;
+	</style>
+</head>
+	<body>
+		<canvas id="canvas" width="800" height="800">
+			Przepraszam, ale Twoja przegl¹darka nie ob³uguje HTML5 i canvas.
+		</canvas>
+		<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+
+		var woda_gory = new Image();
+	woda_gory.onload = function() {
+	context.drawImage(woda_gory, 0, 0); 
+	};
+	woda_gory.src = 'img/woda_gory.png';
+	context.globalCompositeOperation='destination-over';
+		</script>
+	</body>
+</html>

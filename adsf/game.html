@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <canvas id="mojePlotno" width="800" height="800"></canvas>
+  </body>
+  <script>
+	var kanwa = document.getElementById('mojePlotno');
+	var kontekst = kanwa.getContext('2d');
+	var klawisze = {};
+	addEventListener( "keydown", function (e) { klawisze[ e.keyCode] = true; }, false);
+	addEventListener( "keyup", function (e) { delete klawisze[ e.keyCode]; }, false);
+	// obiekty gry
+	var pilka = {
+	x: 100,
+	y: 200,
+	grafika: "pilka.png",
+	};
+	var kosz = {
+	x: 200,
+	y: 100,
+	grafika: "kosz.png",
+	};
+	var ileSukcesow = 0;
+	// Rysowanie
+	var rysowanie = function () {	
+	kontekst.clearRect(0, 0, kanwa.width, kanwa.height);   
+	obrazek = new Image();
+	obrazek.src = pilka.grafika;
+	kontekst.drawImage( obrazek, pilka.x, pilka.y);
+
+	obrazek = new Image();
+	obrazek.src = kosz.grafika;
+	kontekst.drawImage( obrazek, kosz.x, kosz.y);
+	
+	kontekst.fillStyle = "#00ff00";
+	kontekst.font = "30px Arial";
+	kontekst.textAlign = "left";
+	kontekst.textBaseline = "top";
+	kontekst.fillText("Wynik: " + ileSukcesow, 10, 10);
+
+	}
+	var zmiana = function(){
+			
+			if (38 in klawisze) { // klawisz "góra"
+			pilka.y -= 5;
+			}
+			if (40 in klawisze) { // klawisz "dó³"
+			pilka.y += 5;
+			}
+			if (37 in klawisze) { // klawisz "lewo"
+			pilka.x -= 5;
+			}
+			if (39 in klawisze) { // klawisz "prawo"
+			pilka.x += 5;
+			}
+			if (
+			pilka.x <= (kosz.x + 20)
+			&& kosz.x <= (pilka.x + 20)
+			&& pilka.y <= (kosz.y + 20)
+			&& kosz.y <= (pilka.y + 20)
+			)
+		{++ileSukcesow;
+		odNowa();
+	}
+
+		}
+	
+		
+
+
+		
+	var odNowa = function () {
+		// kosz umieszczamy w losowym punkcie
+		kosz.x = Math.random() * kanwa.width;
+		kosz.y = Math.random() * kanwa.height;
+	}
+	var main = function () {
+	rysowanie();
+
+	zmiana();
+	requestAnimationFrame(main);
+	}
+	main();
+	
+	
+	
+	
+	
+	
+	
+</script>
+
+</html>

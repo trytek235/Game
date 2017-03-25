@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zdolni z Pomorza</title>
+<style type="text/css">
+	body{
+		text-align: center;
+	}
+	#canvas {
+		margin: 20px auto;
+	</style>
+</head>
+	<body>
+		<canvas id="canvas" width="800" height="1000">
+			Przepraszam, ale Twoja przegl¹darka nie ob³uguje HTML5 i canvas.
+		</canvas>
+		<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		
+		context.font = 'italic 50pt Calibri';
+		context.fillText('Akademia Morska w Gdyni!', 0, 100);
+		context.moveTo(0,  110);
+		context.lineTo(750, 110);
+		context.strokeStyle="blue";
+		context.stroke();
+		 var centerX = 400; 
+      var centerY = 200; 
+      var radius = 70; 
+
+      context.beginPath(); 
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false); 
+      context.fillStyle = '#ffaa00';
+      context.fill();
+      context.lineWidth = 2;
+      context.strokeStyle = '#ffaa00';
+      context.stroke();
+	  
+	var niebo = new Image();
+	niebo.onload = function() {
+	context.drawImage(niebo, 0, 0); 
+	};
+	niebo.src = 'img/niebo.jpg';
+	
+		var woda_gory = new Image();
+	woda_gory.onload = function() {
+	context.drawImage(woda_gory, 0, 150); 
+	};
+	woda_gory.src = 'img/woda_gory.png';
+	
+	var dar = new Image();
+		dar.onload = function() {
+		context.drawImage(dar, 100, 250); 
+		};
+		dar.src = 'img/dar.png';
+
+	context.globalCompositeOperation='destination-over';
+
+		</script>
+	</body>
+</html>
